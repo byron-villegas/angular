@@ -1,0 +1,117 @@
+<div>
+  <h3 class="text-white">Add User</h3>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label htmlFor="rut" class="form-label text-white">RUT</label>
+      <input type="text" [ngClass]="`form-control ${rut?.valid ? '' : 'is-invalid'}`" formControlName="rut" rut />
+      <span class="text-danger" *ngIf="rut?.errors?.['required']">
+        El rut es obligatorio
+      </span>
+      <span class="text-danger" *ngIf="rut?.errors?.['pattern']">
+        El formato del rut debe ser X.XXXX.XXX-X
+      </span>
+      <span class="text-danger" *ngIf="rut?.errors?.['minlength']">
+        El rut debe poseer al menos 11 caracteres
+      </span>
+      <span class="text-danger" *ngIf="rut?.errors?.['maxlength']">
+        El rut debe poseer maximo 12 caracteres
+      </span>
+    </div>
+    <div class="mb-3">
+      <label htmlFor="nombres" class="form-label text-white">Nombres</label>
+      <input type="text" [ngClass]="`form-control ${nombres?.valid ? '' : 'is-invalid'}`" formControlName="nombres" />
+      <span class="text-danger" *ngIf="nombres?.errors?.['required']">
+        Los nombres son obligatorios
+      </span>
+      <span class="text-danger" *ngIf="nombres?.errors?.['pattern']">
+        El formato de los nombres debe ser solo letras
+      </span>
+      <span class="text-danger" *ngIf="nombres?.errors?.['minlength']">
+        Los nombres deben poseer al menos 3 caracteres
+      </span>
+      <span class="text-danger" *ngIf="nombres?.errors?.['maxlength']">
+        Los nombres deben poseer maximo 50 caracteres
+      </span>
+    </div>
+    <div class="mb-3">
+      <label htmlFor="apellidos" class="form-label text-white">Apellidos</label>
+      <input type="text" [ngClass]="`form-control ${apellidos?.valid ? '' : 'is-invalid'}`" formControlName="apellidos" />
+      <span class="text-danger" *ngIf="apellidos?.errors?.['required']">
+        Los apellidos son obligatorios
+      </span>
+      <span class="text-danger" *ngIf="apellidos?.errors?.['pattern']">
+        El formato de los apellidos debe ser solo letras
+      </span>
+      <span class="text-danger" *ngIf="apellidos?.errors?.['minlength']">
+        Los apellidos deben poseer al menos 3 caracteres
+      </span>
+      <span class="text-danger" *ngIf="apellidos?.errors?.['maxlength']">
+        Los apellidos deben poseer maximo 50 caracteres
+      </span>
+    </div>
+    <div class="mb-3">
+      <label htmlFor="fechaNacimiento" class="form-label text-white">Fecha de nacimiento</label>
+      <input type="date" [ngClass]="`form-control ${fechaNacimiento?.valid ? '' : 'is-invalid'}`" formControlName="fechaNacimiento" (change)="onFechaNacimientoChange()" />
+      <span class="text-danger" *ngIf="fechaNacimiento?.errors?.['required']">
+        La fecha de nacimiento es obligatoria
+      </span>
+      <span class="text-danger" *ngIf="fechaNacimiento?.errors?.['pattern']">
+        El formato de la fecha de nacimiento debe ser dd-MM-yyyy
+      </span>
+      <span class="text-danger" *ngIf="fechaNacimiento?.errors?.['minlength']">
+        La fecha de nacimiento debe poseer 10 caracteres
+      </span>
+      <span class="text-danger" *ngIf="fechaNacimiento?.errors?.['maxlength']">
+        La fecha de nacimiento debe poseer 10 caracteres
+      </span>
+    </div>
+    <div class="mb-3">
+      <label htmlFor="edad" class="form-label text-white">Edad</label>
+      <input type="number" [ngClass]="`form-control ${edad?.valid ? '' : 'is-invalid'}`" formControlName="edad" readOnly />
+      <span class="text-danger" *ngIf="edad?.errors?.['required']">
+        La edad es obligatoria
+      </span>
+      <span class="text-danger" *ngIf="edad?.errors?.['pattern']">
+        El formato de la edad debe ser numerico
+      </span>
+      <span class="text-danger" *ngIf="edad?.errors?.['min']">
+        La edad minima debe ser 1
+      </span>
+      <span class="text-danger" *ngIf="edad?.errors?.['max']">
+        La edad maxima debe ser 120
+      </span>
+    </div>
+    <div class="mb-3">
+      <label class="form-label text-white">Sexo</label>
+      <br />
+      <input type="checkbox" [ngClass]="`form-check-input ${sexoSeleccionado !== '' ? '' : 'is-invalid'}`" id="sexoM" value="M" (change)="onSexoChange($event)" />
+      <label class="form-check-label text-white ms-1 me-2" htmlFor="sexoM">Masculino</label>
+      <input type="checkbox" [ngClass]="`form-check-input ${sexoSeleccionado !== '' ? '' : 'is-invalid'}`" id="sexoF" value="F" (change)="onSexoChange($event)" />
+      <label class="form-check-label text-white ms-1" htmlFor="sexoF">Femenino</label>
+      <br />
+      <span class="text-danger" *ngIf="sexoSeleccionado === ''">
+        El sexo es obligatorio
+      </span>
+      <span class="text-danger" *ngIf="sexo?.errors?.['pattern']">
+        El formato del sexo debe ser M o F
+      </span>
+    </div>
+    <div class="mb-3">
+      <label htmlFor="saldo" class="form-label text-white">Saldo</label>
+      <input type="number" [ngClass]="`form-control ${saldo?.valid ? '' : 'is-invalid'}`" formControlName="saldo" />
+      <span class="text-danger" *ngIf="saldo?.errors?.['required']">
+        El saldo es obligatorio
+      </span>
+      <span class="text-danger" *ngIf="saldo?.errors?.['pattern']">
+        El formato del saldo debe ser numerico
+      </span>
+      <span class="text-danger" *ngIf="saldo?.errors?.['min']">
+        El saldo minimo debe ser 1
+      </span>
+      <span class="text-danger" *ngIf="saldo?.errors?.['max']">
+        El saldo maxima debe ser 999999999
+      </span>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
+</div>

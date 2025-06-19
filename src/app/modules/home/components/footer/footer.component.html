@@ -1,0 +1,35 @@
+<footer class="container py-5 mt-5">
+  <div class="row">
+    <div class="col-12 col-md">
+      <img class="mb-2" src="/favicon.ico" alt="Footer Logo" width="24" height="24" />
+      <small class="d-block mb-3 text-white">© {{currentYear}} - {{currentYear + 1}}</small>
+    </div>
+    <div class="col-6 col-md text-white">
+      <h5>MENU</h5>
+      <ul class="list-unstyled text-small">
+        <li><a [ngClass]="`link-secondary link-white text-decoration-none ${currentPath === '/' ? 'text-white' : '' }`"
+            href="/">HOME</a></li>
+      </ul>
+      <ul class="list-unstyled text-small">
+        <li><a
+            [ngClass]="`link-secondary link-white text-decoration-none ${currentPath === '/users' ? 'text-white' : '' }`"
+            href="/users">USERS</a></li>
+      </ul>
+      <ul class="list-unstyled text-small">
+        <li><a
+            [ngClass]="`link-secondary link-white text-decoration-none ${currentPath === '/about' ? 'text-white' : '' }`"
+            href="/about">ABOUT</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md text-white">
+      <h5>MENU2</h5>
+      <ul class="list-unstyled text-small">
+        <li><a [ngClass]="`link-secondary link-white text-decoration-none ${currentPath === '/' ? 'text-white' : '' }`"
+            href="/">HOME</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid text-center vertical-line">
+    <p class="fw-light text-white mt-2">Copyright © {{currentYear}}. Todos los derechos reservados.</p>
+  </div>
+</footer>
