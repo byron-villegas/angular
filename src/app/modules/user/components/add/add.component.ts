@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../../../core/services/user.service';
+import { minDateValidator } from '../../../../shared/validators/min-date.validator';
 
 @Component({
   selector: 'app-user-add',
@@ -18,7 +19,7 @@ export class AddComponent implements OnInit {
       rut: ['', [Validators.required, Validators.pattern(/\d{1,3}(?:\.\d{3}){2}-[0-9kK]$/), Validators.minLength(11), Validators.maxLength(12)]],
       nombres: ['', [Validators.required, Validators.pattern(/^[aA-zZáéíóúñÁÉÍÓÚÑ\s]*$/), Validators.minLength(3), Validators.maxLength(50)]],
       apellidos: ['', [Validators.required, Validators.pattern(/^[aA-zZáéíóúñÁÉÍÓÚÑ\s]*$/), Validators.minLength(3), Validators.maxLength(50)]],
-      fechaNacimiento: ['', [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/), Validators.minLength(10), Validators.maxLength(10)]],
+      fechaNacimiento: ['', [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/), Validators.minLength(10), Validators.maxLength(10), minDateValidator('1900-01-01')]],
       edad: [0, [Validators.required, Validators.pattern(/^\d+$/), Validators.min(1), Validators.max(120)]],
       sexo: ['', [Validators.required, Validators.pattern(/^(M|F)$/)]],
       saldo: [0, [Validators.required, Validators.pattern(/^\d+$/), Validators.min(1), Validators.max(999999999)]]
@@ -106,10 +107,29 @@ export class AddComponent implements OnInit {
     this.userForm.patchValue({ sexo: this.sexoSeleccionado });
   }
 
+  resetForm(): void {
+    this.userForm.reset();
+    this.edadCalculada = 0;
+    this.sexoSeleccionado = '';
+
+    // uncheck both radio buttons
+    const radioM = document.querySelector('input[id="sexoM"]');
+    const radioF = document.querySelector('input[id="sexoF"]');
+
+    if (radioM) {
+      (radioM as HTMLInputElement).checked = false;
+    }
+    
+    if (radioF) {
+      (radioF as HTMLInputElement).checked = false;
+    }
+  }
+  
   onSubmit(): void {
     if (this.userForm.valid) {
       console.log(this.userForm.value);
       UserService.addUser(this.userForm.value);
+      this.resetForm();
     }
   }
 }
