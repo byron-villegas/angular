@@ -3,8 +3,8 @@
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label htmlFor="rut" class="form-label text-white">RUT</label>
-      <input type="text" [ngClass]="`form-control ${rut?.valid ? '' : 'is-invalid'}`" formControlName="rut" rut />
-      <span class="text-danger">
+      <input type="text" id="rut" [ngClass]="`form-control ${rut?.valid ? '' : 'is-invalid'}`" formControlName="rut" rut />
+      <span class="text-danger" id="rut-errors">
         <div *ngIf="rut?.errors?.['required']">
           El rut es obligatorio
         </div>
@@ -21,8 +21,8 @@
     </div>
     <div class="mb-3">
       <label htmlFor="nombres" class="form-label text-white">Nombres</label>
-      <input type="text" [ngClass]="`form-control ${nombres?.valid ? '' : 'is-invalid'}`" formControlName="nombres" />
-      <span class="text-danger">
+      <input type="text" id="nombres" [ngClass]="`form-control ${nombres?.valid ? '' : 'is-invalid'}`" formControlName="nombres" />
+      <span class="text-danger" id="nombres-errors">
         <div *ngIf="nombres?.errors?.['required']">
           Los nombres son obligatorios
         </div>
@@ -39,8 +39,8 @@
     </div>
     <div class="mb-3">
       <label htmlFor="apellidos" class="form-label text-white">Apellidos</label>
-      <input type="text" [ngClass]="`form-control ${apellidos?.valid ? '' : 'is-invalid'}`" formControlName="apellidos" />
-      <span class="text-danger">
+      <input type="text" id="apellidos" [ngClass]="`form-control ${apellidos?.valid ? '' : 'is-invalid'}`" formControlName="apellidos" />
+      <span class="text-danger" id="apellidos-errors">
         <div *ngIf="apellidos?.errors?.['required']">
           Los apellidos son obligatorios
         </div>
@@ -57,8 +57,8 @@
     </div>
     <div class="mb-3">
       <label htmlFor="fechaNacimiento" class="form-label text-white">Fecha de nacimiento</label>
-      <input type="date" [ngClass]="`form-control ${fechaNacimiento?.valid ? '' : 'is-invalid'}`" formControlName="fechaNacimiento" (change)="onFechaNacimientoChange()" />
-      <span class="text-danger">
+      <input type="date" id="fechaNacimiento" [ngClass]="`form-control ${fechaNacimiento?.valid ? '' : 'is-invalid'}`" formControlName="fechaNacimiento" (change)="onFechaNacimientoChange()" />
+      <span class="text-danger" id="fechaNacimiento-errors">
         <div *ngIf="fechaNacimiento?.errors?.['required']">
           La fecha de nacimiento es obligatoria
         </div>
@@ -78,8 +78,8 @@
     </div>
     <div class="mb-3">
       <label htmlFor="edad" class="form-label text-white">Edad</label>
-      <input type="number" [ngClass]="`form-control ${edad?.valid ? '' : 'is-invalid'}`" formControlName="edad" readOnly />
-      <span class="text-danger">
+      <input type="number" id="edad" [ngClass]="`form-control ${edad?.valid ? '' : 'is-invalid'}`" formControlName="edad" readOnly />
+      <span class="text-danger" id="edad-errors">
         <div *ngIf="edad?.errors?.['required']">
           La edad es obligatoria
         </div>
@@ -97,12 +97,12 @@
     <div class="mb-3">
       <label class="form-label text-white">Sexo</label>
       <br />
-      <input type="checkbox" [ngClass]="`form-check-input ${sexoSeleccionado !== '' ? '' : 'is-invalid'}`" id="sexoM" value="M" (change)="onSexoChange($event)" />
+      <input type="checkbox" id="sexoM" [ngClass]="`form-check-input ${sexoSeleccionado !== '' ? '' : 'is-invalid'}`" value="M" (change)="onSexoChange($event)" />
       <label class="form-check-label text-white ms-1 me-2" htmlFor="sexoM">Masculino</label>
-      <input type="checkbox" [ngClass]="`form-check-input ${sexoSeleccionado !== '' ? '' : 'is-invalid'}`" id="sexoF" value="F" (change)="onSexoChange($event)" />
+      <input type="checkbox" id="sexoF" [ngClass]="`form-check-input ${sexoSeleccionado !== '' ? '' : 'is-invalid'}`" value="F" (change)="onSexoChange($event)" />
       <label class="form-check-label text-white ms-1" htmlFor="sexoF">Femenino</label>
       <br />
-      <span class="text-danger">
+      <span class="text-danger" id="sexo-errors">
         <div *ngIf="sexo?.errors?.['required']">
           El sexo es obligatorio
         </div>
@@ -113,8 +113,8 @@
     </div>
     <div class="mb-3">
       <label htmlFor="saldo" class="form-label text-white">Saldo</label>
-      <input type="number" [ngClass]="`form-control ${saldo?.valid ? '' : 'is-invalid'}`" formControlName="saldo" />
-      <span class="text-danger">
+      <input type="number" id="saldo" [ngClass]="`form-control ${saldo?.valid ? '' : 'is-invalid'}`" formControlName="saldo" />
+      <span class="text-danger" id="saldo-errors">
         <div *ngIf="saldo?.errors?.['required']">
           El saldo es obligatorio
         </div>
@@ -129,7 +129,7 @@
         </div>
       </span>
     </div>
-    <button type="submit" class="btn btn-primary">Enviar</button>
+    <button type="submit" [disabled]="!userForm.valid" class="btn btn-primary">Enviar</button>
     <button type="reset" class="btn btn-secondary ms-2">Limpiar</button>
   </form>
 </div>

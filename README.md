@@ -49,10 +49,32 @@ ng test
 For end-to-end (e2e) testing, run:
 
 ```bash
-ng e2e
+npm run test:e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+For end-to-end (e2e) testing watching, run:
+
+```bash
+npm run test:e2e:watch
+```
+
+### Generate report
+
+First merge the result reports of tests, run:
+
+```bash
+npm run test:e2e:merge
+```
+
+this create **report.json** file in root dir of project
+
+Now we can generate the HTML report, run:
+
+```bash
+npm run test:e2e:report
+```
+
+this create **/cypress/reports/report.html** file, we can open and view the result of tests
 
 ## Additional Resources
 
